@@ -107,8 +107,6 @@ bool Si7021::reset(void) {
 }
 
 void Si7021::readDeviceInfo(void) {
-    uint8_t pos = 0;
-
     // serial number part 1
     Wire.beginTransmission(i2caddr);
     Wire.write((uint8_t) (SI7021_ID1_CMD >> 8));
@@ -116,13 +114,13 @@ void Si7021::readDeviceInfo(void) {
     Wire.endTransmission();
 
     Wire.requestFrom(i2caddr, 8);
-    serial[pos++] = Wire.read();
+    serial[0] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[1] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[2] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[3] = Wire.read();
     Wire.read();
 
     // serial number part 2
@@ -132,13 +130,13 @@ void Si7021::readDeviceInfo(void) {
     Wire.endTransmission();
 
     Wire.requestFrom(i2caddr, 8);
-    serial[pos++] = Wire.read();
+    serial[4] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[5] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[6] = Wire.read();
     Wire.read();
-    serial[pos++] = Wire.read();
+    serial[7] = Wire.read();
     Wire.read();
 
     // firmware revision
