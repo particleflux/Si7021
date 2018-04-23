@@ -6,11 +6,12 @@
 Si7021 si7021;
 
 void setup() {
-    // Call functions on initialized library objects that require hardware
+    // initialize
     bool success = si7021.begin();
 
     Serial.printlnf("begin: %u", success);
 
+    // read sensor info: serial number and firmware revision
     si7021.readDeviceInfo();
     Serial.printlnf(
             "%02x%02x%02x%02x-%02x%02x%02x%02x rev %02x",
@@ -19,6 +20,7 @@ void setup() {
             si7021.firmwareRevision
     );
 
+    // some basic reading tests
     Serial.printlnf("hum: %.2f", si7021.readHumidity());
     Serial.printlnf("last temp: %.2f", si7021.readLastTemperature());
     Serial.printlnf("temp: %.2f", si7021.readTemperature());
