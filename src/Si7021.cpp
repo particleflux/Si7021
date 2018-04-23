@@ -167,8 +167,6 @@ void Si7021::writeRegister8(uint8_t reg, uint8_t value) {
     Wire.write(reg);
     Wire.write(value);
     Wire.endTransmission();
-
-    Serial.print("Wrote $"); Serial.print(reg, HEX); Serial.print(": 0x"); Serial.println(value, HEX);
 }
 
 uint8_t Si7021::readRegister8(uint8_t reg) {
@@ -179,7 +177,5 @@ uint8_t Si7021::readRegister8(uint8_t reg) {
 
     Wire.requestFrom(i2caddr, 1);
     value = Wire.read();
-
-    Serial.print("Read $"); Serial.print(reg, HEX); Serial.print(": 0x"); Serial.println(value, HEX);
     return value;
 }
