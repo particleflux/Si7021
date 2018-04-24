@@ -41,3 +41,8 @@ See the [examples](examples) folder for more details.
 Copyright 2018 Stefan Linke
 
 Licensed under the MIT license
+
+
+## References
+
+[Si7021 datasheet](https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf)
