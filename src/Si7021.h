@@ -4,7 +4,6 @@
  * Si7021 library by Stefan Linke
  */
 
-// This will load the definition for common Particle variable types
 #include "Particle.h"
 
 
@@ -30,7 +29,23 @@
 
 class Si7021 {
 public:
+    /**
+     * The device serial
+     *
+     * Contains the sensor serial number after a call to readDeviceInfo()
+     * It consists of 8 bytes, for example:
+     *  45db524915b5ffff
+     */
     uint8_t serial[8];
+
+    /**
+     * The devices firmware revision
+     *
+     * This is one of the following:
+     *
+     *      0xff - firmware version 1.0
+     *      0x20 - firmware version 2.0
+     */
     uint8_t firmwareRevision = 0;
 
 
