@@ -10,4 +10,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - First public release
 
-[Unreleased]: https://github.com/particleflux/Si7021/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/particleflux/Si7021/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/particleflux/Si7021/compare/v0.9.0...v1.0.0
