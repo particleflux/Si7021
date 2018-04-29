@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Implement conditional compilation
+
 ## [1.0.0] - 2018-04-24
 ### Added
 - First public release

@@ -36,6 +36,26 @@ void loop() {
 
 See the [examples](examples) folder for more details.
 
+## Advanced conditional compilation
+
+In case you do not require all features, some modules can be disabled
+and thus be removed from compilation. The most radical approach would be
+to `#define SI7021_TINY` as seen in [examples/tiny](examples/tiny) .
+Defining this before the library is included, will remove support for
+reading device info and for using the sensor internal heater.
+
+If this is too much, you can also go with `SI7021_CUSTOM`, which, when
+used standalone, equals the use of TINY. But with CUSTOM, you can
+activate additional features with #defines.
+
+```cpp
+// this will enable the deviceInfo() functionality
+#define SI7021_FEATURE_DEVICEINFO
+
+// this will enable the heater() functionality
+#define SI7021_FEATURE_HEATER
+```
+
 ## LICENSE
 
 Copyright 2018 Stefan Linke
