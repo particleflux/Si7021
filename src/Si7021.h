@@ -6,6 +6,13 @@
 
 #include "Particle.h"
 
+#ifndef SI7021_CUSTOM
+    #ifndef SI7021_TINY
+        #define SI7021_FEATURE_DEVICEINFO
+        #define SI7021_FEATURE_HEATER
+    #endif
+#endif
+
 
 #define SI7021_DEFAULT_ADDRESS           0x40
 #define SI7021_DEFAULT_SETTINGS          0x3a
@@ -29,6 +36,8 @@
 
 class Si7021 {
 public:
+
+#ifdef SI7021_FEATURE_DEVICEINFO
     /**
      * The device serial
      *
@@ -48,6 +57,7 @@ public:
      */
     uint8_t firmwareRevision = 0;
 
+#endif
 
     Si7021();
 
@@ -97,6 +107,7 @@ public:
      */
     bool reset(void);
 
+#ifdef SI7021_FEATURE_DEVICEINFO
     /**
      * Read device info
      *
@@ -105,15 +116,16 @@ public:
      * and serial afterwards.
      */
     void readDeviceInfo(void);
+#endif
 
-
+#ifdef SI7021_FEATURE_HEATER
     /**
      * Turn the integrated heater on or off
      *
      * @param desired state (false == off, true == on)
      */
     void heater(bool state);
-
+#endif
 
 
 private:

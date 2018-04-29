@@ -106,6 +106,8 @@ bool Si7021::reset(void) {
     return error == 0;
 }
 
+#ifdef SI7021_FEATURE_DEVICEINFO
+
 void Si7021::readDeviceInfo(void) {
     // serial number part 1
     Wire.beginTransmission(i2caddr);
@@ -149,6 +151,10 @@ void Si7021::readDeviceInfo(void) {
     firmwareRevision = Wire.read();
 }
 
+#endif
+
+#ifdef SI7021_FEATURE_HEATER
+
 void Si7021::heater(bool state) {
     uint8_t config = readRegister8(SI7021_READRHT_REG_CMD);
 
@@ -161,6 +167,7 @@ void Si7021::heater(bool state) {
     writeRegister8(SI7021_WRITERHT_REG_CMD, config);
 }
 
+#endif
 
 void Si7021::writeRegister8(uint8_t reg, uint8_t value) {
     Wire.beginTransmission(i2caddr);
