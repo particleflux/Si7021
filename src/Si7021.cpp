@@ -83,7 +83,7 @@ float Si7021::readLastTemperature(void) {
     Wire.write(SI7021_READPREVTEMP_CMD);
     Wire.endTransmission(false);
 
-    Wire.requestFrom(i2caddr, 3);
+    Wire.requestFrom(i2caddr, 2);
     uint16_t temp = Wire.read();
     temp <<= 8;
     temp |= Wire.read();
