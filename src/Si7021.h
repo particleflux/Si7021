@@ -4,8 +4,22 @@
 
 #ifndef SI7021_CUSTOM
     #ifndef SI7021_TINY
+        /**
+         * Build device info functionality
+         *
+         * This adds `readDeviceInfo()` functionality and the corresponding
+         * `serial` and `firmwareRevision` fields
+         */
         #define SI7021_FEATURE_DEVICEINFO
+        /**
+         * Build Heater support
+         *
+         * Add internal heater control commands
+         */
         #define SI7021_FEATURE_HEATER
+        /**
+         * Do CRC checks for each measurement
+         */
         #define SI7021_FEATURE_CRC
     #endif
 #endif
@@ -18,9 +32,9 @@ public:
     /**
      * The device serial
      *
-     * Contains the sensor serial number after a call to readDeviceInfo()
+     * Contains the sensor serial number after a call to `readDeviceInfo()`
      * It consists of 8 bytes, for example:
-     *  45db524915b5ffff
+     *  `45db524915b5ffff`
      */
     uint8_t serial[8];
 
@@ -29,8 +43,10 @@ public:
      *
      * This is one of the following:
      *
-     *      0xff - firmware version 1.0
-     *      0x20 - firmware version 2.0
+     * <pre>
+     * * 0xff - firmware version 1.0
+     * * 0x20 - firmware version 2.0
+     * </pre>
      */
     uint8_t firmwareRevision = 0;
 
@@ -84,12 +100,14 @@ public:
     /**
      * Reset the sensor to it's default configuration
      *
-     * This is automatically called by begin(), and resets
+     * This is automatically called by `begin()`, and resets
      * the sensors internal configuration registers.
      *
-     *  - heater off
-     *  - heater current: 3.09mA
-     *  - resolution: 12bit RH, 14bit temp
+     * <pre>
+     *  * heater off
+     *  * heater current: 3.09mA
+     *  * resolution: 12bit RH, 14bit temp
+     * </pre>
      *
      * @return true on success
      */
@@ -126,6 +144,7 @@ public:
      *
      * Examples:
      *
+     * <pre>
      *      power       typical current draw (mA)
      *      0x0         3.09
      *      0x1         9.18
@@ -136,6 +155,7 @@ public:
      *      0x8         51.69
      *      ...         ...
      *      0xf         94.20
+     * </pre>
      *
      * @param desired Desired power level
      */

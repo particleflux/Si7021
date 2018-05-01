@@ -10,3 +10,5 @@ doc: src/Si7021.h
 clean: *.bin
 	rm -rf *.bin
 
+.PHONY: doc
+

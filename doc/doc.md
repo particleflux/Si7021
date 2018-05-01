@@ -2,18 +2,28 @@
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`define `[`SI7021_FEATURE_DEVICEINFO`](#Si7021_8h_1a65f8305d091a8d326d30c03b3ca90706)            | 
-`define `[`SI7021_FEATURE_HEATER`](#Si7021_8h_1a722e6219ecb1593012de8a6fde955654)            | 
-`define `[`SI7021_FEATURE_CRC`](#Si7021_8h_1a4c5f213a59f27b1390d89a09ff8e963b)            | 
+`define `[`SI7021_FEATURE_DEVICEINFO`](#Si7021_8h_1a65f8305d091a8d326d30c03b3ca90706)            | Build device info functionality
+`define `[`SI7021_FEATURE_HEATER`](#Si7021_8h_1a722e6219ecb1593012de8a6fde955654)            | Build Heater support
+`define `[`SI7021_FEATURE_CRC`](#Si7021_8h_1a4c5f213a59f27b1390d89a09ff8e963b)            | Do CRC checks for each measurement
 `class `[`Si7021`](#classSi7021) | 
 
 ## Members
 
 #### `define `[`SI7021_FEATURE_DEVICEINFO`](#Si7021_8h_1a65f8305d091a8d326d30c03b3ca90706) 
 
+Build device info functionality
+
+This adds `readDeviceInfo()` functionality and the corresponding `serial` and `firmwareRevision` fields
+
 #### `define `[`SI7021_FEATURE_HEATER`](#Si7021_8h_1a722e6219ecb1593012de8a6fde955654) 
 
+Build Heater support
+
+Add internal heater control commands
+
 #### `define `[`SI7021_FEATURE_CRC`](#Si7021_8h_1a4c5f213a59f27b1390d89a09ff8e963b) 
+
+Do CRC checks for each measurement
 
 # class `Si7021` 
 
@@ -40,20 +50,22 @@
 
 The device serial
 
-Contains the sensor serial number after a call to [readDeviceInfo()](#classSi7021_1a16e6426310ba3128f68deb6421809886) It consists of 8 bytes, for example: 45db524915b5ffff
+Contains the sensor serial number after a call to `readDeviceInfo()` It consists of 8 bytes, for example: `45db524915b5ffff`
 
 #### `public uint8_t `[`firmwareRevision`](#classSi7021_1a5d63026b7a2a5cc90b101303377ea363) 
 
 The devices firmware revision
 
-This is one of the following:  0xff - firmware version 1.0
- 0x20 - firmware version 2.0
+This is one of the following:
+
+* 0xff - firmware version 1.0
+* 0x20 - firmware version 2.0
 
 #### `public bool `[`wasLastMeasurementValid`](#classSi7021_1a519491bad7d2816a3f36ca2dac241709) 
 
 Indicates if the last Measurement's CRC was good
 
-This is the result of a CRC check on the data returned when a measurement was done. It is only applicable for `[readTemperature()](#classSi7021_1af69384a0c8d36e977ec453c52b983527)` and `[readHumidity()](#classSi7021_1abda41c6defc0dd333a924fc74f0249d0)`, and keeps its state until the next call of one of these.
+This is the result of a CRC check on the data returned when a measurement was done. It is only applicable for `readTemperature()` and `readHumidity()`, and keeps its state until the next call of one of these.
 
 #### `public  `[`Si7021`](#classSi7021_1ac47ac7a96302ed8fdf401a6fa6c4fccd)`()` 
 
@@ -90,13 +102,11 @@ relative humidity in percent
 
 Reset the sensor to it's default configuration
 
-This is automatically called by [begin()](#classSi7021_1a726dd631c7a2ae9af25ba1498a843563), and resets the sensors internal configuration registers.
+This is automatically called by `begin()`, and resets the sensors internal configuration registers.
 
-* heater off
-
-* heater current: 3.09mA
-
-* resolution: 12bit RH, 14bit temp
+ * heater off
+ * heater current: 3.09mA
+ * resolution: 12bit RH, 14bit temp
 
 #### Returns
 true on success
@@ -122,16 +132,18 @@ Configure the power level of the integrated heater. This can be set to any value
 
 This does not automatically turn the heater on! Use [Si7021::heater()](#classSi7021_1a14a1db961eff1790fd27ffa14e9db68d) for changing the heaters state.
 
-Examples:  power       typical current draw (mA)
- 0x0         3.09
- 0x1         9.18
- 0x2         15.24
- ...         ...
- 0x4         27.39
- ...         ...
- 0x8         51.69
- ...         ...
- 0xf         94.20
+Examples:
+
+     power       typical current draw (mA)
+     0x0         3.09
+     0x1         9.18
+     0x2         15.24
+     ...         ...
+     0x4         27.39
+     ...         ...
+     0x8         51.69
+     ...         ...
+     0xf         94.20
 
 #### Parameters
 * `desired` Desired power level
