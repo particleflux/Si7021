@@ -143,7 +143,7 @@ public:
     /**
      * Turn the integrated heater on or off
      *
-     * @param desired state (false == off, true == on)
+     * @param state desired state (false == off, true == on)
      */
     void heater(bool state);
 
