@@ -14,7 +14,7 @@ bool Si7021::begin(void) {
         return false;
     }
 
-    if (readRegister8(SI7021_READRHT_REG_CMD) != SI7021_DEFAULT_SETTINGS) {
+    if (readRegister8(SI7021_CMD_READRHT_REG) != SI7021_DEFAULT_SETTINGS) {
         // device is not running with default configuration
         // probably sth broke
         return false;
@@ -28,7 +28,7 @@ float Si7021::readHumidity(void) {
     uint16_t hum;
 
     Wire.beginTransmission(i2caddr);
-    Wire.write(SI7021_MEASRH_NOHOLD_CMD);
+    Wire.write(SI7021_CMD_MEASRH_NOHOLD);
     Wire.endTransmission(false);
     delay(25);
 
@@ -58,7 +58,7 @@ float Si7021::readTemperature(void) {
     float temperature;
 
     Wire.beginTransmission(i2caddr);
-    Wire.write(SI7021_MEASTEMP_NOHOLD_CMD);
+    Wire.write(SI7021_CMD_MEASTEMP_NOHOLD);
     Wire.endTransmission(false);
     delay(25);
 
@@ -80,7 +80,7 @@ float Si7021::readLastTemperature(void) {
     float temperature;
 
     Wire.beginTransmission(i2caddr);
-    Wire.write(SI7021_READPREVTEMP_CMD);
+    Wire.write(SI7021_CMD_READPREVTEMP);
     Wire.endTransmission(false);
 
     Wire.requestFrom(i2caddr, 2);
@@ -99,7 +99,7 @@ float Si7021::readLastTemperature(void) {
 bool Si7021::reset(void) {
     uint8_t error = 0;
     Wire.beginTransmission(i2caddr);
-    Wire.write(SI7021_RESET_CMD);
+    Wire.write(SI7021_CMD_RESET);
     error = Wire.endTransmission();
     delay(50);
 
@@ -111,8 +111,8 @@ bool Si7021::reset(void) {
 void Si7021::readDeviceInfo(void) {
     // serial number part 1
     Wire.beginTransmission(i2caddr);
-    Wire.write((uint8_t) (SI7021_ID1_CMD >> 8));
-    Wire.write((uint8_t) (SI7021_ID1_CMD & 0xFF));
+    Wire.write((uint8_t) (SI7021_CMD_ID1 >> 8));
+    Wire.write((uint8_t) (SI7021_CMD_ID1 & 0xFF));
     Wire.endTransmission();
 
     Wire.requestFrom(i2caddr, 8);
@@ -127,8 +127,8 @@ void Si7021::readDeviceInfo(void) {
 
     // serial number part 2
     Wire.beginTransmission(i2caddr);
-    Wire.write((uint8_t) (SI7021_ID2_CMD >> 8));
-    Wire.write((uint8_t) (SI7021_ID2_CMD & 0xFF));
+    Wire.write((uint8_t) (SI7021_CMD_ID2 >> 8));
+    Wire.write((uint8_t) (SI7021_CMD_ID2 & 0xFF));
     Wire.endTransmission();
 
     Wire.requestFrom(i2caddr, 8);
@@ -143,8 +143,8 @@ void Si7021::readDeviceInfo(void) {
 
     // firmware revision
     Wire.beginTransmission(i2caddr);
-    Wire.write((uint8_t) (SI7021_FIRMVERS_CMD >> 8));
-    Wire.write((uint8_t) (SI7021_FIRMVERS_CMD & 0xFF));
+    Wire.write((uint8_t) (SI7021_CMD_FIRMVERS >> 8));
+    Wire.write((uint8_t) (SI7021_CMD_FIRMVERS & 0xFF));
     Wire.endTransmission();
 
     Wire.requestFrom(i2caddr, 1);
@@ -156,15 +156,15 @@ void Si7021::readDeviceInfo(void) {
 #ifdef SI7021_FEATURE_HEATER
 
 void Si7021::heater(bool state) {
-    uint8_t config = readRegister8(SI7021_READRHT_REG_CMD);
+    uint8_t config = readRegister8(SI7021_CMD_READRHT_REG);
 
     if (state) {
-        config |= 1 << SI7021_CFG_HTRE;
+        config |= 1 << SI7021_CFGBIT_HTRE;
     } else {
-        config &= ~(1 << SI7021_CFG_HTRE);
+        config &= ~(1 << SI7021_CFGBIT_HTRE);
     }
 
-    writeRegister8(SI7021_WRITERHT_REG_CMD, config);
+    writeRegister8(SI7021_CMD_WRITERHT_REG, config);
 }
 
 #endif

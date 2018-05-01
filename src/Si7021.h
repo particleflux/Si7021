@@ -18,19 +18,19 @@
 #define SI7021_DEFAULT_SETTINGS          0x3a
 
 // I2C commands
-#define SI7021_MEASRH_HOLD_CMD           0xE5
-#define SI7021_MEASRH_NOHOLD_CMD         0xF5
-#define SI7021_MEASTEMP_HOLD_CMD         0xE3
-#define SI7021_MEASTEMP_NOHOLD_CMD       0xF3
-#define SI7021_READPREVTEMP_CMD          0xE0
-#define SI7021_RESET_CMD                 0xFE
-#define SI7021_WRITERHT_REG_CMD          0xE6
-#define SI7021_READRHT_REG_CMD           0xE7
-#define SI7021_WRITEHEATER_REG_CMD       0x51
-#define SI7021_READHEATER_REG_CMD        0x11
-#define SI7021_ID1_CMD                   0xFA0F
-#define SI7021_ID2_CMD                   0xFCC9
-#define SI7021_FIRMVERS_CMD              0x84B8
+#define SI7021_CMD_MEASRH_HOLD           0xE5
+#define SI7021_CMD_MEASRH_NOHOLD         0xF5
+#define SI7021_CMD_MEASTEMP_HOLD         0xE3
+#define SI7021_CMD_MEASTEMP_NOHOLD       0xF3
+#define SI7021_CMD_READPREVTEMP          0xE0
+#define SI7021_CMD_RESET                 0xFE
+#define SI7021_CMD_WRITERHT_REG          0xE6
+#define SI7021_CMD_READRHT_REG           0xE7
+#define SI7021_CMD_WRITEHEATER_REG       0x51
+#define SI7021_CMD_READHEATER_REG        0x11
+#define SI7021_CMD_ID1                   0xFA0F
+#define SI7021_CMD_ID2                   0xFCC9
+#define SI7021_CMD_FIRMVERS              0x84B8
 
 // configuration
 #define SI7021_CFGBIT_RES0     0
