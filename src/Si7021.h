@@ -10,6 +10,7 @@
     #ifndef SI7021_TINY
         #define SI7021_FEATURE_DEVICEINFO
         #define SI7021_FEATURE_HEATER
+        #define SI7021_FEATURE_CRC
     #endif
 #endif
 
@@ -66,6 +67,17 @@ public:
      */
     uint8_t firmwareRevision = 0;
 
+#endif
+
+#ifdef SI7021_FEATURE_CRC
+    /**
+     * Indicates if the last Measurement's CRC was good
+     *
+     * This is the result of a CRC check on the data returned when a measurement
+     * was done. It is only applicable for `readTemperature()` and
+     * `readHumidity()`, and keeps its state until the next call of one of these.
+     */
+    bool wasLastMeasurementValid;
 #endif
 
     Si7021();
@@ -170,4 +182,5 @@ private:
     uint8_t sendBytes(uint8_t *data, int length, bool endTransmission = false);
     void readBytes(uint8_t *buffer, int length);
     bool cmd(uint8_t cmd, uint8_t *buffer, uint8_t expected, int duration);
+    uint8_t crc8(uint8_t *data, uint8_t length);
 };

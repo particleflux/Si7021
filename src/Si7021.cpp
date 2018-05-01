@@ -22,6 +22,10 @@ bool Si7021::begin(void) {
         return false;
     }
 
+#ifdef SI7021_FEATURE_CRC
+    wasLastMeasurementValid = true;
+#endif
+
     return true;
 }
 
@@ -40,6 +44,10 @@ float Si7021::readHumidity(void) {
         humidity = 100.0;
     }
 
+#ifdef SI7021_FEATURE_CRC
+    wasLastMeasurementValid = data[2] == crc8(data, 2);
+#endif
+
     return humidity;
 }
 
@@ -49,6 +57,11 @@ float Si7021::readTemperature(void) {
 
     cmd(SI7021_CMD_MEASTEMP_NOHOLD, data, 3, 25);
     temperature = ((float) (((uint16_t) data[0] << 8) | data[1]) * 175.72) / 65536 - 46.85;
+
+#ifdef SI7021_FEATURE_CRC
+    wasLastMeasurementValid = data[2] == crc8(data, 2);
+#endif
+
     return temperature;
 }
 
@@ -166,3 +179,25 @@ bool Si7021::cmd(uint8_t cmd, uint8_t *buffer, uint8_t expected, int duration) {
     }
     return error == 0;
 }
+
+#ifdef SI7021_FEATURE_CRC
+
+uint8_t Si7021::crc8(uint8_t *data, uint8_t length)
+{
+    uint8_t crc = 0;
+    int8_t i, j;
+
+    for (i = 0; i < length; ++i) {
+        crc ^= data[i];
+        for (j = 8; j > 0; --j) {
+            if (crc & 0x80)
+                crc = (crc << 1) ^ 0x131;
+            else
+                crc <<= 1;
+        }
+    }
+
+    return crc;
+}
+
+#endif

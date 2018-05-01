@@ -54,6 +54,9 @@ activate additional features with #defines.
 
 // this will enable the heater() functionality
 #define SI7021_FEATURE_HEATER
+
+// this will enable CRC checks
+#define SI7021_FEATURE_CRC
 ```
 
 ## LICENSE

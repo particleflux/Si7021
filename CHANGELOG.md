@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Heater configurability
+- CRC checks to validate data integrity
 
 ## [1.1.0] - 2018-04-29
 ### Added

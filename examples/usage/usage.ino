@@ -21,10 +21,11 @@ void setup() {
     );
 
     // some basic reading tests
-    Serial.printlnf("hum: %.2f", si7021.readHumidity());
+    Serial.printlnf("hum: %.2f (valid: %u)", si7021.readHumidity(), si7021.wasLastMeasurementValid);
     Serial.printlnf("last temp: %.2f", si7021.readLastTemperature());
-    Serial.printlnf("temp: %.2f", si7021.readTemperature());
+    Serial.printlnf("temp: %.2f (valid: %u)", si7021.readTemperature(), si7021.wasLastMeasurementValid);
 
+    // heater in default settings
     Serial.println("heater: on");
     si7021.heater(true);
     delay(2000);
@@ -34,7 +35,7 @@ void setup() {
     delay(5000);
     Serial.printlnf("temp: %.2f", si7021.readTemperature());
 
-
+    // heater with high power
     Serial.println("heater: on (high power)");
     si7021.setHeaterPower(15);
     si7021.heater(true);
