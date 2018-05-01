@@ -8,7 +8,7 @@ OUTPUT_LANGUAGE        = English
 REPEAT_BRIEF           = YES
 STRIP_FROM_PATH        = src
 MARKDOWN_SUPPORT       = NO
-AUTOLINK_SUPPORT       = YES
+AUTOLINK_SUPPORT       = NO
 HIDE_UNDOC_MEMBERS     = YES
 EXTRACT_ALL            = NO
 

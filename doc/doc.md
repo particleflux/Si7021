@@ -130,7 +130,7 @@ Set the desired heater power
 
 Configure the power level of the integrated heater. This can be set to any value between 0 and 15 (0x0 - 0xf). Lower values mean less current drawn and less heating.
 
-This does not automatically turn the heater on! Use [Si7021::heater()](#classSi7021_1a14a1db961eff1790fd27ffa14e9db68d) for changing the heaters state.
+This does not automatically turn the heater on! Use Si7021::heater() for changing the heaters state.
 
 Examples:
 
