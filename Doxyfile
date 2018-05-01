@@ -1,0 +1,23 @@
+# Doxyfile 1.8.13
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Si7021"
+PROJECT_BRIEF          = "Si 7021 Temperature and Humidity Sensor"
+OUTPUT_DIRECTORY       = doc
+OUTPUT_LANGUAGE        = English
+REPEAT_BRIEF           = YES
+STRIP_FROM_PATH        = src
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+HIDE_UNDOC_MEMBERS     = YES
+EXTRACT_ALL            = NO
+
+INPUT                  = src
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.h
+RECURSIVE              = YES
+EXCLUDE                =
+
+GENERATE_HTML          = NO
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
