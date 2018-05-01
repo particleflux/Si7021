@@ -28,9 +28,10 @@
 #define SI7021_CMD_READRHT_REG           0xE7
 #define SI7021_CMD_WRITEHEATER_REG       0x51
 #define SI7021_CMD_READHEATER_REG        0x11
-#define SI7021_CMD_ID1                   0xFA0F
-#define SI7021_CMD_ID2                   0xFCC9
-#define SI7021_CMD_FIRMVERS              0x84B8
+// those 2 byte commands are endianess-swapped to be sent bytewise
+#define SI7021_CMD_ID1                   0x0FFA
+#define SI7021_CMD_ID2                   0xC9FC
+#define SI7021_CMD_FIRMVERS              0xB884
 
 // configuration
 #define SI7021_CFGBIT_RES0     0
@@ -139,6 +140,7 @@ public:
 private:
     int8_t i2caddr;
 
-    uint8_t readRegister8(uint8_t reg);
-    void writeRegister8(uint8_t reg, uint8_t value);
+    uint8_t sendBytes(uint8_t *data, int length, bool endTransmission = false);
+    void readBytes(uint8_t *buffer, int length);
+    bool cmd(uint8_t cmd, uint8_t *buffer, uint8_t expected, int duration);
 };
