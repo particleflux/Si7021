@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Heater configurability
+
 ## [1.1.0] - 2018-04-29
 ### Added
 - Implement conditional compilation

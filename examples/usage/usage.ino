@@ -33,6 +33,18 @@ void setup() {
     si7021.heater(false);
     delay(5000);
     Serial.printlnf("temp: %.2f", si7021.readTemperature());
+
+
+    Serial.println("heater: on (high power)");
+    si7021.setHeaterPower(15);
+    si7021.heater(true);
+    delay(2000);
+    Serial.printlnf("temp: %.2f", si7021.readTemperature());
+    Serial.println("heater: off");
+    si7021.heater(false);
+    delay(5000);
+    Serial.printlnf("temp: %.2f", si7021.readTemperature());
+
 }
 
 void loop() {

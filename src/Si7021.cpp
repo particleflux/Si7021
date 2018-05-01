@@ -128,6 +128,19 @@ void Si7021::heater(bool state) {
     sendBytes(writeSequence, 2, true);
 }
 
+void Si7021::setHeaterPower(uint8_t desired) {
+    uint8_t power;
+
+    cmd(SI7021_CMD_READHEATER_REG, &power, 1, 0);
+
+    // preserve reserved bits
+    power &= ~((uint8_t) SI7021_HEATER_MASK);
+    power |= desired & SI7021_HEATER_MASK;
+
+    uint8_t writeSequence[] = {SI7021_CMD_WRITEHEATER_REG, power};
+    sendBytes(writeSequence, 2, true);
+}
+
 #endif
 
 uint8_t Si7021::sendBytes(uint8_t *data, int length, bool endTransmission) {

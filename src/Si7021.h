@@ -134,6 +134,33 @@ public:
      * @param desired state (false == off, true == on)
      */
     void heater(bool state);
+
+    /**
+     * Set the desired heater power
+     *
+     * Configure the power level of the integrated heater. This can be set to
+     * any value between 0 and 15 (0x0 - 0xf). Lower values mean less current
+     * drawn and less heating.
+     *
+     * This does not automatically turn the heater on! Use Si7021::heater() for
+     * changing the heaters state.
+     *
+     * Examples:
+     *
+     *      power       typical current draw (mA)
+     *      0x0         3.09
+     *      0x1         9.18
+     *      0x2         15.24
+     *      ...         ...
+     *      0x4         27.39
+     *      ...         ...
+     *      0x8         51.69
+     *      ...         ...
+     *      0xf         94.20
+     *
+     * @param desired Desired power level
+     */
+    void setHeaterPower(uint8_t desired);
 #endif
 
 
