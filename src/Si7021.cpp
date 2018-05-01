@@ -159,9 +159,9 @@ void Si7021::heater(bool state) {
     uint8_t config = readRegister8(SI7021_READRHT_REG_CMD);
 
     if (state) {
-        config |= 1 << 2;
+        config |= 1 << SI7021_CFG_HTRE;
     } else {
-        config &= ~(1 << 2);
+        config &= ~(1 << SI7021_CFG_HTRE);
     }
 
     writeRegister8(SI7021_WRITERHT_REG_CMD, config);

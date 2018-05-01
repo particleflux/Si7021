@@ -32,6 +32,14 @@
 #define SI7021_ID2_CMD                   0xFCC9
 #define SI7021_FIRMVERS_CMD              0x84B8
 
+// configuration
+#define SI7021_CFGBIT_RES0     0
+#define SI7021_CFGBIT_HTRE     2
+#define SI7021_CFGBIT_VDDS     6
+#define SI7021_CFGBIT_RES1     7
+
+#define SI7021_HEATER_MASK     0x0f
+
 
 
 class Si7021 {
