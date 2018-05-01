@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-05-01
 ### Added
 - Heater configurability
 - CRC checks to validate data integrity
@@ -18,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - First public release
 
-[Unreleased]: https://github.com/particleflux/Si7021/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/particleflux/Si7021/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/particleflux/Si7021/compare/1.2.0...1.1.0
 [1.1.0]: https://github.com/particleflux/Si7021/compare/1.1.0...1.0.0
 [1.0.0]: https://github.com/particleflux/Si7021/compare/0.9.0...1.0.0
